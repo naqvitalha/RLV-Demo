@@ -18,7 +18,6 @@ export class ViewSelector extends React.Component {
       <TouchableOpacity
         style={{
           height: 40,
-          marginTop: 20,
           backgroundColor: 'lightgrey',
           alignItems: 'center',
           justifyContent: 'space-around',
