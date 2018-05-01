@@ -24,16 +24,20 @@ export default class App extends Component {
     this.fetchMoreData();
   }
   async fetchMoreData() {
-    this.inProgressNetworkReq = true;
-    const images = await DataCall.get(this.state.count, 20);
-    this.inProgressNetworkReq = false;
-    this.setState({
-      dataProvider: this.state.dataProvider.cloneWithRows(
-        this.state.images.concat(images)
-      ),
-      images: this.state.images.concat(images),
-      count: this.state.count + 20
-    });
+    if (!this.inProgressNetworkReq) {
+      //To prevent redundant fetch requests. Needed because cases of quick up/down scroll can trigger onEndReached
+      //more than once
+      this.inProgressNetworkReq = true;
+      const images = await DataCall.get(this.state.count, 20);
+      this.inProgressNetworkReq = false;
+      this.setState({
+        dataProvider: this.state.dataProvider.cloneWithRows(
+          this.state.images.concat(images)
+        ),
+        images: this.state.images.concat(images),
+        count: this.state.count + 20,
+      });
+    }
   }
   rowRenderer = (type, data) => {
     //We have only one view type so not checks are needed here
