@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "stretch",
-    justifyContent: "space-between",
-    backgroundColor: "#ecf0f1"
+    justifyContent: "space-between"
   }
 });
