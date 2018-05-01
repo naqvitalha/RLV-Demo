@@ -72,7 +72,8 @@ export default class App extends Component {
         />
         {this.state.count > 0 ? (
           <RecyclerListView
-            style={{ flex: 1, margin: 3, marginBottom: 0 }}
+            style={{ flex: 1 }}
+            contentContainerStyle={{ margin: 3 }}
             onEndReached={this.handleListEnd}
             dataProvider={this.state.dataProvider}
             layoutProvider={this.state.layoutProvider}

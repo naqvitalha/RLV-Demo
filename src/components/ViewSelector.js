@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native-web';
+import { Text, TouchableHighlight } from 'react-native';
 
 export class ViewSelector extends React.Component {
   constructor(props) {
     super(props);
     this.currentView = 0;
-  } 
+  }
   shouldComponentUpdate(newProps) {
     return this.props.viewType !== newProps.viewType;
   }
@@ -15,16 +15,18 @@ export class ViewSelector extends React.Component {
   };
   render() {
     return (
-      <TouchableOpacity
+      <TouchableHighlight
         style={{
           height: 40,
-          backgroundColor: 'lightgrey',
+          backgroundColor: 'black',
           alignItems: 'center',
           justifyContent: 'space-around',
         }}
         onPress={this.onPressHandler}>
-        <Text>Change View Type: {this.props.viewType}</Text>
-      </TouchableOpacity>
+        <Text style={{ color: 'white' }}>
+          Tap to Change View Type: {this.props.viewType}
+        </Text>
+      </TouchableHighlight>
     );
   }
 }
