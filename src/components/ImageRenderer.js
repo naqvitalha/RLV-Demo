@@ -12,6 +12,7 @@ export class ImageRenderer extends React.Component {
       <View
         style={{
           flex: 1,
+          margin: 3,
           backgroundColor: 'lightgrey',
         }}>
         <Image
