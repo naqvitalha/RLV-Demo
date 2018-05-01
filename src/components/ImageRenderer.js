@@ -10,6 +10,7 @@ export class ImageRenderer extends React.Component {
   componentWillUpdate() {
     //On iOS while recycling till the new image is loaded the old one remains visible. This forcefully hides the old image.
     //It is then made visible onLoad
+    //Will not be invoked on Android and Web
     if (isIOS && this.imageRef) {
       this.imageRef.setNativeProps({
         opacity: 0,
