@@ -25,14 +25,14 @@ export default class App extends Component {
   }
   async fetchMoreData() {
     this.inProgressNetworkReq = true;
-    const images = await DataCall.get(this.state.count, 10);
+    const images = await DataCall.get(this.state.count, 20);
     this.inProgressNetworkReq = false;
     this.setState({
       dataProvider: this.state.dataProvider.cloneWithRows(
         this.state.images.concat(images)
       ),
       images: this.state.images.concat(images),
-      count: this.state.count + 10
+      count: this.state.count + 20
     });
   }
   rowRenderer = (type, data) => {
@@ -73,7 +73,6 @@ export default class App extends Component {
         {this.state.count > 0 ? (
           <RecyclerListView
             style={{ flex: 1 }}
-            disableRecycling
             contentContainerStyle={{ margin: 3 }}
             onEndReached={this.handleListEnd}
             dataProvider={this.state.dataProvider}
