@@ -1,12 +1,28 @@
 import React from 'react';
-import { Image, Platform, View } from 'react-native-web';
+import { Image, Platform, View } from 'react-native';
 
-const isNonAndroid = Platform.OS !== 'android';
- 
+const isIOS = Platform.OS === 'ios';
+
 export class ImageRenderer extends React.Component {
   shouldComponentUpdate(newProps) {
     return this.props.imageUrl !== newProps.imageUrl;
   }
+  componentWillUpdate() {
+    //On iOS while recycling till the new image is loaded the old one remains visible. This forcefully hides the old image.
+    //It is then made visible onLoad
+    if (isIOS && this.imageRef) {
+      this.imageRef.setNativeProps({
+        opacity: 0,
+      });
+    }
+  }
+  handleOnLoad = () => {
+    if (isIOS && this.imageRef) {
+      this.imageRef.setNativeProps({
+        opacity: 1,
+      });
+    }
+  };
   render() {
     return (
       <View
@@ -22,6 +38,7 @@ export class ImageRenderer extends React.Component {
           style={{
             flex: 1,
           }}
+          onLoad={this.handleOnLoad}
           source={{ uri: this.props.imageUrl }}
         />
       </View>
