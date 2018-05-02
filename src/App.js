@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet, ActivityIndicator } from "react-native-web";
+import { View, StyleSheet, ActivityIndicator } from "react-native";
 import { RecyclerListView, DataProvider } from "recyclerlistview";
 import { DataCall } from "./utils/DataCall";
 import { LayoutUtil } from "./utils/LayoutUtil";
