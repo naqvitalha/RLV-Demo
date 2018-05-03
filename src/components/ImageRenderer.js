@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Platform, View } from 'react-native';
+import { Platform, View } from 'react-native';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -32,15 +32,16 @@ export class ImageRenderer extends React.Component {
           margin: 3,
           backgroundColor: 'lightgrey',
         }}>
-        <Image
+          <img
           ref={ref => {
             this.imageRef = ref;
           }}
           style={{
             flex: 1,
+            objectFit: "cover"
           }}
           onLoad={this.handleOnLoad}
-          source={{ uri: this.props.imageUrl }}
+          src={this.props.imageUrl }
         />
       </View>
     );
