@@ -37,7 +37,8 @@ export class ImageRenderer extends React.Component {
             this.imageRef = ref;
           }}
           style={{
-            flex: 1,
+            height: "100%",
+            width: "100%",
             objectFit: "cover"
           }}
           onLoad={this.handleOnLoad}
