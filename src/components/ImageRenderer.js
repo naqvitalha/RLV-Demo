@@ -36,7 +36,7 @@ export class ImageRenderer extends React.Component {
     );
   }
 }
-const styles = {
+const styles = StyleSheet.create({
   image: {
      height: "100%",
      width: "100%",
@@ -47,4 +47,4 @@ const styles = {
      margin: 3,
      backgroundColor: "lightgrey"
   }
-}
+});
