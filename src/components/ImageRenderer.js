@@ -28,6 +28,7 @@ export class ImageRenderer extends React.Component {
           ref={ref => {
             this.imageRef = ref;
           }}
+          async="on"
           src={this.props.imageUrl}
           onLoad={this.onLoad}
           style={styles.image}
