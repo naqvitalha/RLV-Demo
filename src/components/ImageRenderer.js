@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 
 export class ImageRenderer extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ export class ImageRenderer extends React.Component {
     );
   }
 }
-const styles = StyleSheet.create({
+const styles = {
   image: {
      height: "100%",
      width: "100%",
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
      margin: 3,
      backgroundColor: "lightgrey"
   }
-});
+};
