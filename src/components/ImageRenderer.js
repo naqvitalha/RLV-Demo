@@ -14,25 +14,10 @@ export class ImageRenderer extends React.Component {
       this.imageRef.style.opacity = 0;
     }
   }
-  componentDidMount() {
-    let reqId = ++this.id;
-    requestIdleCallback(() => {
-      if (reqId === this.id && this.imageRef) {
-        this.imageRef.src = null;
-        this.imageRef.style.opacity = 1;
-        this.imageRef.src = this.props.imageUrl;
-      }
-    });
-  }
-  componentDidUpdate() {
-    let reqId = ++this.id;
-    requestIdleCallback(() => {
-      if (reqId === this.id && this.imageRef) {
-        this.imageRef.src = null;
-        this.imageRef.style.opacity = 1;
-        this.imageRef.src = this.props.imageUrl;
-      }
-    });
+  onLoad = () => {
+      if (this.imageRef) {
+      this.imageRef.style.opacity = 1;
+    }
   }
   render() {
     return (
@@ -47,6 +32,7 @@ export class ImageRenderer extends React.Component {
           ref={ref => {
             this.imageRef = ref;
           }}
+          onLoad={this.onLoad}
           style={{
             height: "100%",
             width: "100%",
