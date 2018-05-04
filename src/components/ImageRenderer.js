@@ -9,11 +9,6 @@ export class ImageRenderer extends React.Component {
   shouldComponentUpdate(newProps) {
     return this.props.imageUrl !== newProps.imageUrl;
   }
-  componentWillUpdate() {
-    if (this.imageRef) {
-      this.imageRef.style.opacity = 0;
-    }
-  }
   onLoad = () => {
       if (this.imageRef) {
       this.imageRef.style.opacity = 1;
@@ -41,7 +36,8 @@ const styles = {
   image: {
      height: "100%",
      width: "100%",
-     objectFit: "cover"
+     objectFit: "cover",
+     opacity: 0
   },
   container: {
      flex: 1,
