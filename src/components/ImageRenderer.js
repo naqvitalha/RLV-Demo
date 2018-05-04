@@ -32,6 +32,7 @@ export class ImageRenderer extends React.Component {
           ref={ref => {
             this.imageRef = ref;
           }}
+          src={this.props.imageUrl}
           onLoad={this.onLoad}
           style={{
             height: "100%",
