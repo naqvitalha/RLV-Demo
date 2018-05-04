@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 export class ImageRenderer extends React.Component {
   constructor(props) {
@@ -22,11 +22,7 @@ export class ImageRenderer extends React.Component {
   render() {
     return (
       <View
-        style={{
-          flex: 1,
-          margin: 3,
-          backgroundColor: "lightgrey"
-        }}
+        style={styles.container}
       >
         <img
           ref={ref => {
@@ -34,13 +30,21 @@ export class ImageRenderer extends React.Component {
           }}
           src={this.props.imageUrl}
           onLoad={this.onLoad}
-          style={{
-            height: "100%",
-            width: "100%",
-            objectFit: "cover"
-          }}
+          style={styles.image}
         />
       </View>
     );
+  }
+}
+const styles = {
+  image: {
+     height: "100%",
+     width: "100%",
+     objectFit: "cover"
+  },
+  container: {
+     flex: 1,
+     margin: 3,
+     backgroundColor: "lightgrey"
   }
 }
