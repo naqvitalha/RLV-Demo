@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet, ActivityIndicator } from "react-native";
+import { View, StyleSheet, Text, ActivityIndicator } from "react-native";
 import { RecyclerListView, DataProvider } from "recyclerlistview";
 import { DataCall } from "./utils/DataCall";
 import { LayoutUtil } from "./utils/LayoutUtil";
@@ -59,9 +59,9 @@ export default class App extends Component {
   renderFooter = () => {
     //Second view makes sure we don't unnecessarily change height of the list on this event. That might cause indicator to remain invisible
     //The empty view can be removed once you've fetched all the data
-    return  <View style={{ height: 60, justifyContent: "space-around", alignItems:"center" }}>
-        <Text>Loading...</Text>
-      </View>
+    return  <View style={{ height: 60, justifyContent: "space-around", alignItems: "center" }}>
+                <Text>Loading...</Text>
+            </View>
   };
 
   render() {
