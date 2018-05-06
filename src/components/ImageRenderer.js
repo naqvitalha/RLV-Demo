@@ -4,7 +4,6 @@ import { View } from "react-native";
 export class ImageRenderer extends React.Component {
   constructor(props) {
     super(props);
-    this.id = 1;
   }
   shouldComponentUpdate(newProps) {
     return this.props.imageUrl !== newProps.imageUrl;
@@ -23,7 +22,6 @@ export class ImageRenderer extends React.Component {
           ref={ref => {
             this.imageRef = ref;
           }}
-          async="on"
           src={this.props.imageUrl}
           onLoad={this.onLoad}
           style={styles.image}
