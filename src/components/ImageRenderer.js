@@ -3,17 +3,10 @@ import { View } from "react-native";
 
 export class ImageRenderer extends React.Component {
   shouldComponentUpdate(newProps) {
-    const isChanged = this.props.imageUrl !== newProps.imageUrl;
-    if(this.imageRef && isChanged) {
-      this.imageRef.src = undefined;
-    }
-    return isChanged;
+    return this.props.imageUrl !== newProps.imageUrl;
   }
   render() {
     return (
-      <View
-        style={styles.container}
-      >
         <img
           ref={ref => {
             this.imageRef = ref;
@@ -21,7 +14,6 @@ export class ImageRenderer extends React.Component {
           src={this.props.imageUrl}
           style={styles.image}
         />
-      </View>
     );
   }
 }
