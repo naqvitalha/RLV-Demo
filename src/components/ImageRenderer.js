@@ -7,6 +7,9 @@ export class ImageRenderer extends React.Component {
   }
   render() {
     return (
+     <View	
+        style={styles.container}	
+     >
         <img
           ref={ref => {
             this.imageRef = ref;
@@ -14,6 +17,7 @@ export class ImageRenderer extends React.Component {
           src={this.props.imageUrl}
           style={styles.image}
         />
+      </View>
     );
   }
 }
