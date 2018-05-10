@@ -1,10 +1,16 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Text, ActivityIndicator } from "react-native";
-import { RecyclerListView, DataProvider } from "recyclerlistview";
+import { View, StyleSheet, Text, ActivityIndicator, ScrollView } from "react-native";
+import { RecyclerListView, DataProvider, BaseScrollView } from "recyclerlistview";
 import { DataCall } from "./utils/DataCall";
 import { LayoutUtil } from "./utils/LayoutUtil";
 import { ImageRenderer } from "./components/ImageRenderer";
 import { ViewSelector } from "./components/ViewSelector";
+
+class ExtendedScrollView extends BaseScrollView {
+  render() {
+    return <ScrollView {...this.props} onScroll={()=>{}} />
+  }
+}
 
 export default class App extends Component {
   constructor(props) {
@@ -28,14 +34,14 @@ export default class App extends Component {
       //To prevent redundant fetch requests. Needed because cases of quick up/down scroll can trigger onEndReached
       //more than once
       this.inProgressNetworkReq = true;
-      const images = await DataCall.get(this.state.count, 20);
+      const images = await DataCall.get(this.state.count, 200);
       this.inProgressNetworkReq = false;
       this.setState({
         dataProvider: this.state.dataProvider.cloneWithRows(
           this.state.images.concat(images)
         ),
         images: this.state.images.concat(images),
-        count: this.state.count + 20,
+        count: this.state.count + images.length,
       });
     }
   }
@@ -76,6 +82,7 @@ export default class App extends Component {
           <RecyclerListView
             style={{ flex: 1 }}
             contentContainerStyle={{ margin: 3 }}
+            externalScrollView={ExtendedScrollView}
             onEndReached={this.handleListEnd}
             dataProvider={this.state.dataProvider}
             layoutProvider={this.state.layoutProvider}
