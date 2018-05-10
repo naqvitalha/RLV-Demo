@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text, ActivityIndicator, ScrollView } from "react-native";
-import { RecyclerListView, DataProvider, BaseScrollView } from "recyclerlistview";
+import { RecyclerListView, DataProvider, BaseScrollView } from "recyclerlistview/web";
 import { DataCall } from "./utils/DataCall";
 import { LayoutUtil } from "./utils/LayoutUtil";
 import { ImageRenderer } from "./components/ImageRenderer";
@@ -83,6 +83,7 @@ export default class App extends Component {
             style={{ flex: 1 }}
             contentContainerStyle={{ margin: 3 }}
             renderAheadOffset={500000}
+            useWindowScroll={true}
             externalScrollView={ExtendedScrollView}
             onEndReached={this.handleListEnd}
             dataProvider={this.state.dataProvider}
