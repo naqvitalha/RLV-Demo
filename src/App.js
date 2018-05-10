@@ -82,6 +82,7 @@ export default class App extends Component {
           <RecyclerListView
             style={{ flex: 1 }}
             contentContainerStyle={{ margin: 3 }}
+            renderAheadOffset={5000}
             externalScrollView={ExtendedScrollView}
             onEndReached={this.handleListEnd}
             dataProvider={this.state.dataProvider}
