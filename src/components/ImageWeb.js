@@ -1,12 +1,13 @@
+import { ReactComponent } from "../../ReactComponent";
 import * as React from 'react';
 import { StyleSheet } from "react-native";
-export class ImageWeb extends React.Component {
+export class ImageWeb extends ReactComponent {
     constructor(props) {
         super(props);
         this.onImageLoad = this.onImageLoad.bind(this);
         this.getPlaceholderRef = this.getPlaceholderRef.bind(this);
         this.getImageRef = this.getImageRef.bind(this);
-        this._hasUriChanged = true;
+        this._handleUriChange = true;
     }
     shouldComponentUpdate(newProps) {
         const oldSource = this.props.source;
@@ -14,7 +15,7 @@ export class ImageWeb extends React.Component {
         const lastUri = oldSource && oldSource.uri ? oldSource.uri : undefined;
         const newUri = newSource && newSource.uri ? newSource.uri : undefined;
         if (lastUri !== newUri) {
-            this._hasUriChanged = true;
+            this._handleUriChange = true;
         }
         return true;
     }
@@ -31,6 +32,15 @@ export class ImageWeb extends React.Component {
         }
         if (this.props.onLoadEnd) {
             this.props.onLoadEnd();
+        }
+    }
+    resetComponent() {
+        if (this._imageRef) {
+            this._imageRef.style.transition = null;
+            this._imageRef.style.opacity = '0';
+        }
+        if (this._placeholderRef) {
+            this._placeholderRef.style.opacity = '1';
         }
     }
     getPlaceholderRef(placeholderRef) {
@@ -63,7 +73,7 @@ export class ImageWeb extends React.Component {
         return `scale(${scale},${scale})`;
     }
     getTransitonForImage() {
-        return this._hasUriChanged ? undefined : 'opacity 0.3s ease-out';
+        return this._handleUriChange ? undefined : 'opacity 0.3s ease-out';
     }
     getObjectFit(resizeMode) {
         let objectFit = resizeMode ? resizeMode : 'cover';
@@ -78,12 +88,13 @@ export class ImageWeb extends React.Component {
         const transition = this.getTransitonForImage();
         const propStyles = StyleSheet.flatten(this.props.style);
         const objectFit = this.getObjectFit(this.props.resizeMode);
-        let opacity = 1;
         let placeholderOpacity = 0;
-        if (this._hasUriChanged) {
+        let opacity = 1;
+        if (this._handleUriChange) {
             opacity = 0;
             placeholderOpacity = 1;
-            this._hasUriChanged = false;
+            this.resetComponent();
+            this._handleUriChange = false;
         }
         return (<div style={Object.assign({}, styles.container, propStyles)}>
                 {src ? <img ref={this.getImageRef} style={Object.assign({ opacity, transition, objectFit }, styles.image)} src={src} onLoad={this.onImageLoad} onError={this.props.onError}/> : undefined}
