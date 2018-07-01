@@ -1,7 +1,6 @@
-import { ReactComponent } from "../../ReactComponent";
 import * as React from 'react';
 import { StyleSheet } from "react-native";
-export class ImageWeb extends ReactComponent {
+export class ImageWeb extends React.Component {
     constructor(props) {
         super(props);
         this.onImageLoad = this.onImageLoad.bind(this);
