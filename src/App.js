@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text, ActivityIndicator, ScrollView } from "react-native";
-import { RecyclerListView, DataProvider, BaseScrollView } from "recyclerlistview/web";
+import { RecyclerListView, DataProvider, BaseScrollView } from "recyclerlistview";
 import { DataCall } from "./utils/DataCall";
 import { LayoutUtil } from "./utils/LayoutUtil";
 import { ImageRenderer } from "./components/ImageRenderer";
@@ -75,7 +75,6 @@ export default class App extends Component {
         {this.state.count > 0 ? (
           <RecyclerListView
             contentContainerStyle={{ margin: 3 }}
-            useWindowScroll={true}
             onEndReached={this.handleListEnd}
             dataProvider={this.state.dataProvider}
             layoutProvider={this.state.layoutProvider}
