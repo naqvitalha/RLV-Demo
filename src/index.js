@@ -11,7 +11,7 @@ const Component =
 <div style={{ 
      display: "flex", 
      width: window.innerWidth, 
-     minHeight: window.innerHeight
+     height: window.innerHeight
   }}>
   <App />
 </div>
