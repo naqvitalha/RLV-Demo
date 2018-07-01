@@ -26,7 +26,7 @@ export class ImageWeb extends React.Component {
             this._placeholderRef.style.opacity = '0';
         }
         if (this._imageRef) {
-            this._imageRef.style.transition = this.getTransitonForImage();
+            this._imageRef.style.transition = 'opacity 0.3s ease-out';
             this._imageRef.style.opacity = '1';
         }
         if (this.props.onLoadEnd) {
@@ -71,9 +71,6 @@ export class ImageWeb extends React.Component {
         const scale = this.extractPlaceholderScale(this.props);
         return `scale(${scale},${scale})`;
     }
-    getTransitonForImage() {
-        return this._handleUriChange ? undefined : 'opacity 0.3s ease-out';
-    }
     getObjectFit(resizeMode) {
         let objectFit = resizeMode ? resizeMode : 'cover';
         if (objectFit === 'stretch') {
@@ -84,7 +81,6 @@ export class ImageWeb extends React.Component {
     render() {
         const src = this.props.source.uri;
         const placeholderSrc = this.extractPlaceholderUri(this.props);
-        const transition = this.getTransitonForImage();
         const propStyles = StyleSheet.flatten(this.props.style);
         const objectFit = this.getObjectFit(this.props.resizeMode);
         let placeholderOpacity = 0;
@@ -96,7 +92,7 @@ export class ImageWeb extends React.Component {
             this._handleUriChange = false;
         }
         return (<div style={Object.assign({}, styles.container, propStyles)}>
-                {src ? <img ref={this.getImageRef} style={Object.assign({ opacity, transition, objectFit }, styles.image)} src={src} onLoad={this.onImageLoad} onError={this.props.onError}/> : undefined}
+                {src ? <img ref={this.getImageRef} style={Object.assign({ opacity, objectFit }, styles.image)} src={src} onLoad={this.onImageLoad} onError={this.props.onError}/> : undefined}
                 {placeholderSrc ?
             <div style={styles.placeholderContainer}>
                         <img ref={this.getPlaceholderRef} src={placeholderSrc} style={Object.assign({}, styles.placeholderImage, { opacity: placeholderOpacity, transform: this.getPlaceholderTransforms() })}/>
